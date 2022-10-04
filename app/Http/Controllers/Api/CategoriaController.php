@@ -50,13 +50,20 @@ class CategoriaController extends Controller
         //
     }
 
-    public function update(Request $request, Categoria $categoria)
+    public function update(StoreCategoriaRequest $request, Categoria $categoria)
     {
-        //
+        $categoria = Categoria::find($categoria->pkcategoria);
+        $categoria->nomedacategoria = $request->nome_da_categoria;
+        $categoria->update();
     }
 
     public function destroy(Categoria $categoria)
     {
-        //
+        $categoria->delete();
+
+        return response() -> json([
+            'status' => 200,
+            'mensagem' => 'Categoria apagada',
+        ], 200);
     }
 }
