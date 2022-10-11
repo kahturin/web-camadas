@@ -20,8 +20,19 @@ use App\Http\Controllers\Api\ItemdopedidoController;
 |
 */
 
+/*
+    DB_CONNECTION=mysql
+    DB_HOST=144.22.231.213
+    DB_PORT=3306
+    DB_DATABASE=SenacBikeStore
+    DB_USERNAME=usuariobike
+    DB_PASSWORD=Senac@1976
+*/
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::apiResource('categorias', CategoriaController::class);
+
+Route::apiResource('produtos', ProdutoController::class);
