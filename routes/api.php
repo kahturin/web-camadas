@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\PedidoController;
 use App\Http\Controllers\Api\ProdutoController;
 use App\Http\Controllers\Api\ItemdopedidoController;
+use App\Http\Controllers\Api\PassportAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +30,13 @@ use App\Http\Controllers\Api\ItemdopedidoController;
     DB_PASSWORD=Senac@1976
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::apiResource('categorias', CategoriaController::class);
-
 Route::apiResource('produtos', ProdutoController::class);
+
+//rota para categorias
+Route::apiResource('categorias', CategoriaController::class)->middleware('auth:api');
+
+//Rota de segurança para registro de usuário
+Route::post('register', [PassportAuthController::class, 'register']);
+Route::post('login', [PassportAuthController::class, 'login']);
+Route::post('logout', [PassportAuthController::class, 'logout'])->middleware('auth:api');
+Route::post('userInfo', [PassportAuthController::class, 'userInfo'])->middleware('auth:api');
