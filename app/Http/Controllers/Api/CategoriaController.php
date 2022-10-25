@@ -9,6 +9,19 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoriaRequest;
 use Illuminate\Support\Str;
 
+/**
+ * @OA\Get(
+ *  path="/api/categorias",
+ *  operationId="getCategoriasList",
+ *  tags={"Categorias"},
+ *  summary="Retorna a lista de categorias",
+ *  description="Retorna o JSON da lista de Categorias",
+ *  @OA\Response(
+ *      response=200,
+ *      description="Operacao executda com sucesso"
+ *  )
+ * )
+ */
 
 class CategoriaController extends Controller
 {
@@ -32,7 +45,7 @@ class CategoriaController extends Controller
     }
     public function create()
     {
-        //
+        
     }  
 
     public function store(StoreCategoriaRequest $request)
@@ -50,12 +63,12 @@ class CategoriaController extends Controller
 
     public function show(Categoria $categoria)
     {
-        //
+        
     }
 
     public function edit(Categoria $categoria)
     {
-        //
+        
     }
 
     public function update(StoreCategoriaRequest $request, Categoria $categoria)
